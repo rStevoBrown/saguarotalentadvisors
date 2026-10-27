@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Saguaro Talent Advisors</title>
+<link href="../assets/fonts/fonts.css" rel="stylesheet">
+<style>
+  :root { --green:#3D5016; --dark-green:#2A3A0F; --orange:#E8500A; --sage:#F2F4EC; --mid-sage:#D6DEBB; --gray:#555555; --white:#ffffff; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Source Sans 3',sans-serif; color:var(--gray); background:var(--white); }
+
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; background:var(--white); border-bottom:2px solid var(--mid-sage); display:flex; align-items:center; justify-content:space-between; padding:0 48px; height:104px; }
+  .nav-links { display:flex; gap:36px; list-style:none; }
+  .nav-links a { text-decoration:none; color:var(--green); font-weight:600; font-size:15px; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--orange); }
+  .nav-cta { background:var(--orange); color:white; padding:10px 24px; border-radius:2px; font-weight:700; font-size:14px; letter-spacing:0.05em; text-transform:uppercase; text-decoration:none; }
+  .nav-cta:hover { background:var(--dark-green); }
+
+  .page-hero { margin-top: 64px; background:var(--sage); padding:64px 48px 56px; border-bottom:3px solid var(--orange); }
+  .page-hero-inner { max-width:1100px; margin:0 auto; }
+  .eyebrow { color:var(--orange); font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:14px; }
+  .page-hero h1 { font-family:'Playfair Display',serif; font-size:48px; font-weight:900; color:var(--dark-green); line-height:1.1; margin-bottom:16px; }
+  .page-hero p { font-size:17px; color:var(--gray); line-height:1.7; font-weight:300; max-width:580px; }
+
+  .contact-section { padding:52px 48px; max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
+
+  /* FORM */
+  .form-title { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--dark-green); margin-bottom:8px; }
+  .form-sub { font-size:15px; color:var(--gray); font-weight:300; margin-bottom:32px; line-height:1.6; }
+  .divider { width:48px; height:3px; background:var(--orange); margin:12px 0 28px; }
+  .form-group { margin-bottom:20px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+  label { display:block; font-size:13px; font-weight:700; color:var(--dark-green); letter-spacing:0.05em; text-transform:uppercase; margin-bottom:6px; }
+  input, select, textarea { width:100%; padding:12px 16px; border:1px solid var(--mid-sage); border-radius:2px; font-family:'Source Sans 3',sans-serif; font-size:15px; color:var(--gray); background:var(--white); transition:border-color 0.2s; outline:none; }
+  input:focus, select:focus, textarea:focus { border-color:var(--orange); }
+  textarea { resize:vertical; min-height:120px; }
+  select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23555' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 16px center; }
+  .btn-submit { background:var(--orange); color:white; padding:16px 40px; font-size:15px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; border:none; border-radius:2px; cursor:pointer; width:100%; transition:background 0.2s; margin-top:8px; }
+  .btn-submit:hover { background:#c94008; }
+  .form-note { font-size:12px; color:#999; margin-top:12px; text-align:center; font-weight:300; }
+
+  /* CONTACT INFO */
+  .info-title { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--dark-green); margin-bottom:8px; }
+  .info-sub { font-size:15px; color:var(--gray); font-weight:300; margin-bottom:32px; line-height:1.6; }
+  .contact-card { background:var(--sage); border-top:3px solid var(--orange); padding:28px; margin-bottom:20px; }
+  .contact-card-label { font-size:11px; font-weight:700; color:var(--orange); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:8px; }
+  .contact-card-value { font-size:16px; font-weight:600; color:var(--dark-green); }
+  .contact-card-value a { color:var(--dark-green); text-decoration:none; }
+  .contact-card-value a:hover { color:var(--orange); }
+  .contact-card-note { font-size:13px; color:var(--gray); margin-top:4px; font-weight:300; }
+
+  /* WHAT TO EXPECT */
+  .expect-box { background:var(--dark-green); padding:28px; margin-top:0; }
+  .expect-title { color:var(--orange); font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:16px; }
+  .expect-item { display:flex; gap:12px; margin-bottom:14px; align-items:flex-start; }
+  .expect-item:last-child { margin-bottom:0; }
+  .expect-num { color:var(--orange); font-weight:700; font-size:14px; flex-shrink:0; margin-top:1px; }
+  .expect-text { color:var(--mid-sage); font-size:14px; line-height:1.6; font-weight:300; }
+
+  /* FAQ STRIP */
+  .faq-strip { background:var(--sage); padding:36px 48px 48px; }
+  .faq-inner { max-width:1100px; margin:0 auto; }
+  .section-eyebrow { color:var(--orange); font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px; }
+  .section-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:var(--dark-green); margin-bottom:16px; }
+  .faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:36px; }
+  .faq-card { background:var(--white); padding:24px 28px; border-left:3px solid var(--orange); }
+  .faq-q { font-size:15px; font-weight:700; color:var(--dark-green); margin-bottom:8px; }
+  .faq-a { font-size:14px; line-height:1.7; font-weight:300; }
+
+  footer { background:var(--sage); border-top:3px solid var(--orange); padding:36px 48px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; }
+  .footer-links { display:flex; gap:28px; }
+  .footer-links a { color:var(--dark-green); font-size:13px; text-decoration:none; font-weight:600; }
+  .footer-links a:hover { color:var(--orange); }
+  .footer-copy { color:var(--gray); font-size:12px; }
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; height: 56px; }
+    nav .nav-links { display: none; }
+    nav .nav-cta { font-size: 12px; padding: 8px 16px; }
+    .nav-logo img { height: 30px; width: auto; }
+
+    .page-hero, .hero { padding: 48px 20px; }
+    .page-hero-inner, .hero { grid-template-columns: 1fr !important; gap: 36px; }
+    .page-hero h1, .hero h1 { font-size: 32px; }
+    .page-hero p, .hero-sub { font-size: 15px; }
+    .hero-ctas { flex-direction: column; }
+    .btn-primary, .btn-secondary, .btn-orange, .btn-white { width: 100%; text-align: center; }
+
+    .section { padding: 48px 20px; }
+    .two-col { grid-template-columns: 1fr !important; gap: 36px; }
+    .section-title { font-size: 26px; }
+
+    .steps { grid-template-columns: 1fr !important; }
+    .services-grid { grid-template-columns: 1fr !important; }
+    .serve-grid { grid-template-columns: 1fr !important; }
+    .need-grid { grid-template-columns: 1fr !important; }
+    .faq-grid { grid-template-columns: 1fr !important; }
+    .testimonials-grid { grid-template-columns: 1fr !important; }
+
+    .compare-section, .fee-section, .sage-section, .roles-section,
+    .guarantee-section, .pricing-section, .faq-strip, .need-us-section,
+    .training-section { padding: 48px 20px; }
+
+    .fee-wrap { grid-template-columns: 1fr !important; gap: 36px; }
+    .guarantee-inner { grid-template-columns: 1fr !important; gap: 36px; }
+    .founder-inner { grid-template-columns: 1fr !important; gap: 36px; }
+    .fee-inner, .sage-inner, .roles-inner, .pricing-inner,
+    .faq-inner, .need-us-inner, .compare-wrap { padding: 0; }
+
+    .stats-inner { grid-template-columns: 1fr 1fr !important; gap: 24px; }
+    .stat-num { font-size: 36px; }
+
+    .compare-table, .fee-table, .geo-table, .roles-table,
+    .training-table, .pricing-table { font-size: 13px; }
+    .compare-table th, .compare-table td,
+    .fee-table th, .fee-table td,
+    .geo-table th, .geo-table td,
+    .roles-table th, .roles-table td,
+    .training-table th, .training-table td,
+    .pricing-table th, .pricing-table td { padding: 10px 12px; }
+
+    .calc-box { grid-template-columns: 1fr !important; gap: 16px; text-align: center; }
+    .process { display: block; }
+    .process-step { grid-template-columns: 48px 1fr; gap: 16px; }
+
+    .hero-card { margin-top: 0; }
+    .stat-row { flex-direction: column; gap: 4px; }
+    .stat-value { text-align: left !important; max-width: 100% !important; }
+
+    .contact-section { grid-template-columns: 1fr !important; gap: 48px; padding: 48px 20px; }
+    .form-row { grid-template-columns: 1fr !important; gap: 0; }
+
+    .trust-bar { flex-wrap: wrap; gap: 16px; padding: 16px 20px; justify-content: flex-start; }
+    .trust-item { font-size: 12px; }
+
+    .cta-band { padding: 48px 20px; }
+    .cta-band h2 { font-size: 26px; }
+
+    footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+    .footer-links { flex-wrap: wrap; gap: 16px; }
+
+    .hero-checklist { margin-top: 8px; }
+    .hero-services { margin-top: 8px; }
+
+    .page-hero-inner { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .page-hero h1, .hero h1 { font-size: 26px; }
+    .section-title { font-size: 22px; }
+    .stats-inner { grid-template-columns: 1fr !important; }
+    .compare-table thead { display: none; }
+    .compare-table td { display: block; padding: 8px 12px; }
+    .compare-table tr { border-bottom: 2px solid var(--mid-sage); margin-bottom: 8px; display: block; }
+  }
+
+
+  /* ── HAMBURGER MENU ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    border: none;
+    background: none;
+    z-index: 1001;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--dark-green);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 768px) {
+    .nav-hamburger { display: flex; }
+    nav .nav-links {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--sage);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      z-index: 999;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav .nav-links.open { display: flex; }
+    nav .nav-links a { font-size: 22px; font-weight: 700; color: var(--dark-green); }
+    nav .nav-cta { display: none; }
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><img src="../assets/img/logo.png" alt="Saguaro Talent Advisors" style="height:40px; width:auto;"></div>
+  <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href='../'>Home</a></li>
+    <li><a href='../about/'>About</a></li>
+    <li><a href='../advisory/'>Talent Advisory</a></li>
+    <li><a href='../hiring/'>Direct Hire</a></li>
+  </ul>
+  <a class='nav-cta' href='../contact/'>Contact Us</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow">Get In Touch</div>
+    <h1>Let's Talk About Your Next Hire.</h1>
+    <p>No commitment required. Tell us about the role, the company, or the challenge — and we'll let you know if we're the right fit.</p>
+  </div>
+</div>
+
+<div class="contact-section">
+
+  <!-- FORM -->
+  <div>
+    <div class="form-title">Send Us a Message</div>
+    <div class="divider"></div>
+    <p class="form-sub">Fill out the form below and we'll get back to you within one business day.</p>
+
+    <!-- TODO(forms): This form posts to mailto:, which only opens the visitor's own email app
+         (and does nothing on many phones/webmail-only users). Fields collected: First Name*, Last Name*,
+         Company*, Work Email*, Phone, Inquiry Type (select), Role, Message.
+         Replace action with a hosted endpoint, e.g. Formspree: action="https://formspree.io/f/XXXXXXX" method="POST"
+         (and drop enctype="text/plain"). Free tier = 50 submissions/month. See README.md. -->
+    <form action="mailto:brian@saguarotalentadvisors.com" method="POST" enctype="text/plain">
+      <div class="form-row">
+        <div>
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="First Name" placeholder="Jane" required>
+        </div>
+        <div>
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="Last Name" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="company">Company</label>
+        <input type="text" id="company" name="Company" placeholder="Acme Corp" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Work Email</label>
+        <input type="email" id="email" name="Email" placeholder="jane@acmecorp.com" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="Phone" placeholder="(602) 555-0100">
+      </div>
+      <div class="form-group">
+        <label for="inquiry">What Can We Help With?</label>
+        <select id="inquiry" name="Inquiry Type">
+          <option value="">— Select one —</option>
+          <option value="direct-hire">Direct Hire / Contingency Search</option>
+          <option value="advisory">Talent Advisory Services</option>
+          <option value="interview-training">Interview Training</option>
+          <option value="compensation">Compensation Benchmarking</option>
+          <option value="other">General Inquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="role">Role You're Hiring For (if applicable)</label>
+        <input type="text" id="role" name="Role" placeholder="e.g. Senior Accountant, Operations Manager">
+      </div>
+      <div class="form-group">
+        <label for="message">Tell Us More</label>
+        <textarea id="message" name="Message" placeholder="Brief description of the role, company size, location, or anything else that would help us understand the need..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Message →</button>
+      <p class="form-note">By submitting this form you agree to be contacted by Saguaro Talent Advisors regarding your inquiry. We do not share your information with third parties.</p>
+    </form>
+  </div>
+
+  <!-- CONTACT INFO + WHAT TO EXPECT -->
+  <div>
+    <div class="info-title">Contact Information</div>
+    <div class="divider"></div>
+    <p class="info-sub">We're a boutique firm — when you reach out, you're talking directly to the recruiter working your search. No call centers, no account managers.</p>
+
+    <div class="contact-card">
+      <div class="contact-card-label">Email</div>
+      <div class="contact-card-value"><a href="/cdn-cgi/l/email-protection#bcdeced5ddd2fccfdddbc9ddced3c8ddd0d9d2c8ddd8cad5cfd3cecf92dfd3d1"><span class="__cf_email__" data-cfemail="fe9c8c979f90be8d9f998b9f8c918a9f929b908a9f9a88978d918c8dd09d9193">[email&#160;protected]</span></a></div>
+      <div class="contact-card-note">Best way to reach us — we respond within one business day</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-label">Website</div>
+      <div class="contact-card-value"><a href="https://www.saguarotalentadvisors.com">www.saguarotalentadvisors.com</a></div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-label">Geography</div>
+      <div class="contact-card-value">West &amp; Central United States</div>
+      <div class="contact-card-note">Arizona · Nevada · California · Colorado · Texas and surrounding states. Remote roles placed nationally.</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-label">Response Time</div>
+      <div class="contact-card-value">Within 1 Business Day</div>
+      <div class="contact-card-note">For urgent hiring needs, mention it in your message and we'll prioritize accordingly</div>
+    </div>
+
+    <div class="expect-box">
+      <div class="expect-title">What Happens After You Reach Out</div>
+      <div class="expect-item"><span class="expect-num">1</span><span class="expect-text">We review your inquiry and confirm whether the role is a good fit for our expertise</span></div>
+      <div class="expect-item"><span class="expect-num">2</span><span class="expect-text">We schedule a 30-minute intake call to understand the role, team, compensation, and timeline</span></div>
+      <div class="expect-item"><span class="expect-num">3</span><span class="expect-text">We send a written fee agreement for your review and signature before any search begins</span></div>
+      <div class="expect-item"><span class="expect-num">4</span><span class="expect-text">Search begins within 48 hours of a signed agreement — first candidates typically presented within 2 weeks</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FAQ -->
+<div class="faq-strip">
+  <div class="faq-inner">
+    <div class="section-eyebrow">Common Questions</div>
+    <div class="section-title">Before You Reach Out</div>
+    <div class="divider"></div>
+    <div class="faq-grid">
+      <div class="faq-card"><div class="faq-q">Is there any cost to have an initial conversation?</div><div class="faq-a">None at all. The intake call is free and there's no obligation to move forward. We'll tell you upfront if we don't think we're the right fit.</div></div>
+      <div class="faq-card"><div class="faq-q">How quickly can you start a search?</div><div class="faq-a">We can begin active sourcing within 48 hours of a signed fee agreement. Initial candidates are typically presented within 1–2 weeks.</div></div>
+      <div class="faq-card"><div class="faq-q">What if I'm not ready to start a search yet?</div><div class="faq-a">That's fine. Reach out anyway — we're happy to have a preliminary conversation so you're ready to move quickly when the time comes.</div></div>
+      <div class="faq-card"><div class="faq-q">Do you work with companies outside the West and Central US?</div><div class="faq-a">Our primary client focus is West and Central US, but we can place candidates nationally — especially for remote-eligible roles.</div></div>
+      <div class="faq-card"><div class="faq-q">What's your fee if we don't hire anyone?</div><div class="faq-a">No placement fee if no hire is made. A $1,500 kill fee applies only if you cancel an active search after 30 or more days of recruiting activity.</div></div>
+      <div class="faq-card"><div class="faq-q">Can I engage you for advisory services without a recruiting search?</div><div class="faq-a">Yes — interview training, compensation benchmarking, and hiring process advisory are all available as standalone engagements.</div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo"><img src="../assets/img/logo.png" alt="Saguaro Talent Advisors" style="height:60px;"></div>
+  <div class="footer-links">
+    <a href='../'>Home</a>
+    <a href='../about/'>About</a>
+    <a href='../advisory/'>Talent Advisory</a>
+    <a href='../hiring/'>Direct Hire</a>
+    <a href="
