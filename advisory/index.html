@@ -4,17 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Talent Advisory Services — Saguaro Talent Advisors</title>
+<link rel="preload" href="../assets/fonts/263ee033c4d2.woff2" as="font" type="font/woff2" crossorigin>
 <link href="../assets/fonts/fonts.css" rel="stylesheet">
 <style>
   :root { --green:#3D5016; --dark-green:#2A3A0F; --orange:#E8500A; --sage:#F2F4EC; --mid-sage:#D6DEBB; --gray:#555555; --white:#ffffff; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Source Sans 3',sans-serif; color:var(--gray); background:var(--white); }
-  nav { position:fixed; top:0; left:0; right:0; z-index:100; background:var(--white); border-bottom:2px solid var(--mid-sage); display:flex; align-items:center; justify-content:space-between; padding:0 48px; height:70px; }
-  .nav-logo img { height:64px; }
-  .nav-links { display:flex; gap:36px; list-style:none; }
-  .nav-links a { text-decoration:none; color:var(--green); font-weight:600; font-size:15px; transition:color 0.2s; }
-  .nav-links a:hover { color:var(--orange); }
-  .nav-cta { background:var(--orange); color:white; padding:10px 24px; border-radius:2px; font-weight:700; font-size:14px; letter-spacing:0.05em; text-transform:uppercase; text-decoration:none; }
+  body { font-family:'Source Sans 3','Source Sans 3 Fallback',sans-serif; color:var(--gray); background:var(--white); }
 
   .page-hero { margin-top: 64px; background:var(--white); padding:56px 48px 56px; }
   .page-hero-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1.2fr 1fr; gap:80px; align-items:start; }
@@ -103,10 +98,6 @@
 
   /* ── MOBILE RESPONSIVE ── */
   @media (max-width: 768px) {
-    nav { padding: 0 20px; height: 56px; }
-    nav .nav-links { display: none; }
-    nav .nav-cta { font-size: 12px; padding: 8px 16px; }
-    .nav-logo img { height: 30px; width: auto; }
 
     .page-hero, .hero { padding: 48px 20px; }
     .page-hero-inner, .hero { grid-template-columns: 1fr !important; gap: 36px; }
@@ -184,73 +175,28 @@
   }
 
 
-  /* ── HAMBURGER MENU ── */
-  .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    cursor: pointer;
-    padding: 8px;
-    border: none;
-    background: none;
-    z-index: 1001;
-  }
-  .nav-hamburger span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--dark-green);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  @media (max-width: 768px) {
-    .nav-hamburger { display: flex; }
-    nav .nav-links {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: var(--sage);
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 36px;
-      z-index: 999;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    nav .nav-links.open { display: flex; }
-    nav .nav-links a { font-size: 22px; font-weight: 700; color: var(--dark-green); }
-    nav .nav-cta { display: none; }
-  }
 
   /* wide tables scroll inside this box on small screens instead of widening the page */
   .table-scroll { max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:32px; }
   .table-scroll > table { margin-top:0; }
 </style>
+<link href="../assets/nav.css" rel="stylesheet">
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo"><img src="../assets/img/logo.png" alt="Saguaro Talent Advisors" style="height:40px; width:auto;"></div>
+  <div class="nav-logo"><img src="../assets/img/logo.png" alt="Saguaro Talent Advisors"></div>
   <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links">
     <li><a href='../'>Home</a></li>
     <li><a href='../about/'>About</a></li>
+    <li><a href='../advisory/' aria-current="page">Talent Advisory</a></li>
     <li><a href='../hiring/'>Direct Hire</a></li>
     <li><a href='../contact/'>Contact</a></li>
   </ul>
-  <a class='nav-cta' href='../contact/'>Get in Touch</a>
+  <a class='nav-cta' href='../contact/'>Start a Search</a>
 </nav>
 
 <div class="page-hero">

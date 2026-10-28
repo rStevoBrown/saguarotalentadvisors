@@ -1,0 +1,77 @@
+/* Shared site header. Every page links this file and uses the same <nav> markup,
+   so the header looks and measures the same everywhere. */
+
+/* Always reserve the scrollbar's space so the viewport (and the fixed nav) never
+   changes width between pages or when the mobile menu locks scrolling. */
+html { scrollbar-gutter: stable; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--white); border-bottom: 2px solid var(--mid-sage);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 64px;
+  font-family: 'Source Sans 3', 'Source Sans 3 Fallback', sans-serif;
+}
+/* display:block so the logo's position doesn't depend on the text font's line metrics */
+.nav-logo img { display: block; height: 40px; width: auto; }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--green); font-weight: 600; font-size: 15px; letter-spacing: 0.02em; white-space: nowrap; transition: color 0.2s; }
+.nav-links a:hover,
+.nav-links a[aria-current="page"] { color: var(--orange); }
+.nav-cta { background: var(--orange); color: white; padding: 10px 24px; border-radius: 2px; font-weight: 700; font-size: 14px; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: background 0.2s; }
+.nav-cta:hover { background: var(--green); color: white; }
+
+/* ── HAMBURGER MENU ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  border: none;
+  background: none;
+  z-index: 1001;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--dark-green);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* The 5 links + CTA need ~830px, so switch to the menu below 900px instead of
+   letting the links squeeze and wrap. */
+@media (max-width: 900px) {
+  .nav-hamburger { display: flex; }
+  nav .nav-links {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--sage);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    z-index: 999;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  nav .nav-links.open { display: flex; }
+  nav .nav-links a { font-size: 22px; font-weight: 700; color: var(--dark-green); }
+  nav .nav-links a[aria-current="page"] { color: var(--orange); }
+  nav .nav-cta { display: none; }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; height: 56px; }
+}
