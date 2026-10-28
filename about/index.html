@@ -28,7 +28,6 @@
   .values-list { list-style:none; margin-top:8px; }
   .values-list li { padding:16px 0; border-bottom:1px solid var(--mid-sage); display:flex; gap:16px; align-items:flex-start; }
   .values-list li:last-child { border-bottom:none; }
-  .val-icon { font-size:20px; margin-top:2px; flex-shrink:0; }
   .val-title { font-size:15px; font-weight:700; color:var(--dark-green); margin-bottom:4px; }
   .val-text { font-size:14px; line-height:1.6; font-weight:300; }
 
@@ -71,20 +70,11 @@
   .cta-band { background:var(--dark-green); padding:36px 48px 48px; text-align:center; }
   .cta-band h2 { font-family:'Playfair Display',serif; font-size:36px; font-weight:700; color:var(--white); margin-bottom:16px; }
   .cta-band p { color:var(--mid-sage); font-size:17px; margin-bottom:32px; font-weight:300; }
-  .btn-orange { background:var(--orange); color:white; padding:16px 40px; font-size:15px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; text-decoration:none; border-radius:2px; display:inline-block; }
-  .btn-orange:hover { background:#c94008; }
 
-  footer { background:var(--sage); padding:36px 48px; border-top:3px solid var(--orange); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; }
-  .footer-links { display:flex; gap:28px; }
-  .footer-links a { color:var(--dark-green); font-size:13px; text-decoration:none; font-weight:600; }
-  .footer-links a:hover { color:var(--orange); }
-  .footer-copy { color:var(--gray); font-size:12px; }
   
 
   .logo-text { font-family: Playfair Display, serif; font-size: 22px; font-weight: 900; color: var(--dark-green); letter-spacing: 0.08em; display: flex; flex-direction: column; line-height: 1; }
   .logo-sub { font-family: Source Sans 3, sans-serif; font-size: 9px; font-weight: 700; color: var(--orange); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
-  .logo-text-footer { font-family: Playfair Display, serif; font-size: 18px; font-weight: 900; color: white; letter-spacing: 0.08em; display: flex; flex-direction: column; line-height: 1; opacity: 0.85; }
-  .logo-sub-footer { font-family: Source Sans 3, sans-serif; font-size: 8px; font-weight: 700; color: #E8500A; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
 
   /* ── MOBILE RESPONSIVE ── */
   @media (max-width: 768px) {
@@ -94,7 +84,6 @@
     .page-hero h1, .hero h1 { font-size: 32px; }
     .page-hero p, .hero-sub { font-size: 15px; }
     .hero-ctas { flex-direction: column; }
-    .btn-primary, .btn-secondary, .btn-orange, .btn-white { width: 100%; text-align: center; }
 
     .section { padding: 48px 20px; }
     .two-col { grid-template-columns: 1fr !important; gap: 36px; }
@@ -148,8 +137,6 @@
     .cta-band { padding: 48px 20px; }
     .cta-band h2 { font-size: 26px; }
 
-    footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
-    .footer-links { flex-wrap: wrap; gap: 16px; }
 
     .hero-checklist { margin-top: 8px; }
     .hero-services { margin-top: 8px; }
@@ -170,6 +157,7 @@
 
 </style>
 <link href="../assets/nav.css" rel="stylesheet">
+<link href="../assets/site.css" rel="stylesheet">
 </head>
 <body>
 
@@ -212,10 +200,10 @@
       <div class="section-title" style="font-size:28px">What Drives Us</div>
       <div class="divider"></div>
       <ul class="values-list">
-        <li><span class="val-icon">🎯</span><div><div class="val-title">Results Before Revenue</div><div class="val-text">We don't get paid unless you get a hire. That alignment keeps us honest and keeps us working hard on your behalf.</div></div></li>
-        <li><span class="val-icon">🤝</span><div><div class="val-title">Relationship-First Recruiting</div><div class="val-text">We build real relationships with candidates — not just contact lists. That means better fits and fewer surprises at offer time.</div></div></li>
-        <li><span class="val-icon">🔍</span><div><div class="val-title">Quality Over Volume</div><div class="val-text">You'll receive 3–5 thoroughly vetted, briefed candidates — not 20 resumes that make you do the screening yourself.</div></div></li>
-        <li><span class="val-icon">💬</span><div><div class="val-title">Transparency at Every Step</div><div class="val-text">Fees are agreed in writing before the search begins. No hidden charges, no surprise negotiations after a hire.</div></div></li>
+        <li><div><div class="val-title">Results Before Revenue</div><div class="val-text">We don't get paid unless you get a hire. That alignment keeps us honest and keeps us working hard on your behalf.</div></div></li>
+        <li><div><div class="val-title">Relationship-First Recruiting</div><div class="val-text">We build real relationships with candidates — not just contact lists. That means better fits and fewer surprises at offer time.</div></div></li>
+        <li><div><div class="val-title">Quality Over Volume</div><div class="val-text">You'll receive 3–5 thoroughly vetted, briefed candidates — not 20 resumes that make you do the screening yourself.</div></div></li>
+        <li><div><div class="val-title">Transparency at Every Step</div><div class="val-text">Fees are agreed in writing before the search begins. No hidden charges, no surprise negotiations after a hire.</div></div></li>
       </ul>
     </div>
   </div>
@@ -293,8 +281,8 @@
 </div>
 
 <footer>
-  <div class="footer-logo"><img src="../assets/img/logo.png" alt="Saguaro Talent Advisors" style="height:60px;"></div>
-  <div class="footer-links"><a href='../'>Home</a><a href='../advisory/'>Talent Advisory</a><a href='../hiring/'>Direct Hire</a><a href='../contact/'>Contact</a></div>
+  <div class="footer-logo"><img src="../assets/img/logo.png" alt="Saguaro Talent Advisors" width="163" height="60"></div>
+  <div class="footer-links"><a href='../'>Home</a><a href='../about/' aria-current='page'>About</a><a href='../advisory/'>Talent Advisory</a><a href='../hiring/'>Direct Hire</a><a href='../contact/'>Contact</a></div>
   <div class="footer-copy">© 2026 Saguaro Talent Advisors · www.saguarotalentadvisors.com</div>
 </footer>
 

@@ -31,8 +31,6 @@
   input:focus, select:focus, textarea:focus { border-color:var(--orange); }
   textarea { resize:vertical; min-height:120px; }
   select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23555' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 16px center; }
-  .btn-submit { background:var(--orange); color:white; padding:16px 40px; font-size:15px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; border:none; border-radius:2px; cursor:pointer; width:100%; transition:background 0.2s; margin-top:8px; }
-  .btn-submit:hover { background:#c94008; }
   .form-note { font-size:12px; color:#999; margin-top:12px; text-align:center; font-weight:300; }
 
   /* CONTACT INFO */
@@ -63,11 +61,6 @@
   .faq-q { font-size:15px; font-weight:700; color:var(--dark-green); margin-bottom:8px; }
   .faq-a { font-size:14px; line-height:1.7; font-weight:300; }
 
-  footer { background:var(--sage); border-top:3px solid var(--orange); padding:36px 48px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; }
-  .footer-links { display:flex; gap:28px; }
-  .footer-links a { color:var(--dark-green); font-size:13px; text-decoration:none; font-weight:600; }
-  .footer-links a:hover { color:var(--orange); }
-  .footer-copy { color:var(--gray); font-size:12px; }
 
   /* ── MOBILE RESPONSIVE ── */
   @media (max-width: 768px) {
@@ -77,7 +70,6 @@
     .page-hero h1, .hero h1 { font-size: 32px; }
     .page-hero p, .hero-sub { font-size: 15px; }
     .hero-ctas { flex-direction: column; }
-    .btn-primary, .btn-secondary, .btn-orange, .btn-white { width: 100%; text-align: center; }
 
     .section { padding: 48px 20px; }
     .two-col { grid-template-columns: 1fr !important; gap: 36px; }
@@ -129,8 +121,6 @@
     .cta-band { padding: 48px 20px; }
     .cta-band h2 { font-size: 26px; }
 
-    footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
-    .footer-links { flex-wrap: wrap; gap: 16px; }
 
     .hero-checklist { margin-top: 8px; }
     .hero-services { margin-top: 8px; }
@@ -151,6 +141,7 @@
 
 </style>
 <link href="../assets/nav.css" rel="stylesheet">
+<link href="../assets/site.css" rel="stylesheet">
 </head>
 <body>
 
@@ -249,10 +240,6 @@
       <div class="contact-card-note">Best way to reach us — we respond within one business day</div>
     </div>
     <div class="contact-card">
-      <div class="contact-card-label">Website</div>
-      <div class="contact-card-value"><a href="https://www.saguarotalentadvisors.com">www.saguarotalentadvisors.com</a></div>
-    </div>
-    <div class="contact-card">
       <div class="contact-card-label">Geography</div>
       <div class="contact-card-value">West &amp; Central United States</div>
       <div class="contact-card-note">Arizona · Nevada · California · Colorado · Texas and surrounding states. Remote roles placed nationally.</div>
@@ -292,13 +279,8 @@
 </div>
 
 <footer>
-  <div class="footer-logo"><img src="../assets/img/logo.png" alt="Saguaro Talent Advisors" style="height:60px;"></div>
-  <div class="footer-links">
-    <a href='../'>Home</a>
-    <a href='../about/'>About</a>
-    <a href='../advisory/'>Talent Advisory</a>
-    <a href='../hiring/'>Direct Hire</a>
-  </div>
+  <div class="footer-logo"><img src="../assets/img/logo.png" alt="Saguaro Talent Advisors" width="163" height="60"></div>
+  <div class="footer-links"><a href='../'>Home</a><a href='../about/'>About</a><a href='../advisory/'>Talent Advisory</a><a href='../hiring/'>Direct Hire</a><a href='../contact/' aria-current='page'>Contact</a></div>
   <div class="footer-copy">© 2026 Saguaro Talent Advisors · www.saguarotalentadvisors.com</div>
 </footer>
 

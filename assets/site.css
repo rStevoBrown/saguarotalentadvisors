@@ -1,0 +1,51 @@
+/* Shared buttons + footer. Linked after nav.css on every page so all pages
+   use one definition instead of per-page copies. */
+
+/* ── CTA BUTTONS ──
+   inline-flex + align-items:center keeps the label centred even when a flex
+   parent stretches the button (the Home hero row did this: the primary button
+   was stretched to the bordered secondary's height with its text stuck at the top).
+   A 2px border on every variant (transparent where unused) and an explicit
+   line-height give every button the same 53px height on every page. */
+.btn-primary, .btn-secondary, .btn-orange, .btn-white, .btn-submit {
+  display: inline-flex; align-items: center; justify-content: center;
+  box-sizing: border-box;
+  padding: 14px 32px;
+  border: 2px solid transparent; border-radius: 2px;
+  font-family: 'Source Sans 3', 'Source Sans 3 Fallback', sans-serif;
+  font-size: 15px; font-weight: 700; line-height: 21px;
+  letter-spacing: 0.05em; text-transform: uppercase; text-align: center;
+  text-decoration: none; cursor: pointer; vertical-align: middle;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.btn-primary, .btn-orange, .btn-submit { background: var(--orange); border-color: var(--orange); color: white; }
+.btn-primary:hover, .btn-orange:hover, .btn-submit:hover { background: #c94008; border-color: #c94008; }
+.btn-secondary { background: transparent; border-color: var(--dark-green); color: var(--dark-green); }
+.btn-secondary:hover { background: var(--dark-green); color: white; }
+.btn-white { background: white; border-color: white; color: var(--orange); }
+.btn-white:hover { background: var(--dark-green); border-color: var(--dark-green); color: white; }
+/* closing-band buttons and the form submit keep their wider 40px padding */
+.cta-band .btn-orange, .btn-white, .btn-submit { padding-left: 40px; padding-right: 40px; }
+.btn-submit { width: 100%; margin-top: 8px; }
+
+/* ── FOOTER ──
+   Three-column grid with equal outer tracks, so the nav links sit in the
+   true centre of the page no matter how wide the logo or copyright line is. */
+footer {
+  background: var(--sage); border-top: 3px solid var(--orange);
+  padding: 36px 48px;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;
+}
+.footer-logo { justify-self: start; }
+.footer-logo img { display: block; height: 60px; width: auto; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; }
+.footer-links a { color: var(--dark-green); font-size: 13px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: color 0.2s; }
+.footer-links a:hover, .footer-links a[aria-current="page"] { color: var(--orange); }
+.footer-copy { justify-self: end; text-align: right; color: var(--gray); font-size: 12px; }
+
+@media (max-width: 768px) {
+  .btn-primary, .btn-secondary, .btn-orange, .btn-white { width: 100%; }
+  footer { padding: 32px 20px; grid-template-columns: 1fr; justify-items: center; gap: 20px; text-align: center; }
+  .footer-logo, .footer-copy { justify-self: center; text-align: center; }
+  .footer-links { gap: 12px 24px; max-width: 320px; }
+}
