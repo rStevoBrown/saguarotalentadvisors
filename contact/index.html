@@ -32,6 +32,15 @@
   textarea { resize:vertical; min-height:120px; }
   select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23555' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 16px center; }
   .form-note { font-size:12px; color:#999; margin-top:12px; text-align:center; font-weight:300; }
+  .form-hp { position:absolute !important; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden; }
+  .form-status { margin-top:16px; padding:16px 20px; font-size:15px; line-height:1.6; border-left:3px solid var(--green); background:var(--sage); color:var(--dark-green); outline:none; overflow-wrap:anywhere; }
+  .form-status[hidden] { display:none; }
+  .form-status strong { display:block; font-weight:700; margin-bottom:2px; }
+  .form-status a { color:var(--dark-green); font-weight:600; }
+  .form-status a:hover { color:var(--orange); }
+  .form-status.is-error { border-left-color:var(--orange); background:#FDF1EA; }
+  .btn-submit:disabled { opacity:0.7; cursor:wait; }
+  .btn-submit:disabled:hover { background:var(--orange); border-color:var(--orange); }
 
   /* CONTACT INFO */
   .info-title { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--dark-green); margin-bottom:8px; }
@@ -176,37 +185,37 @@
     <div class="divider"></div>
     <p class="form-sub">Fill out the form below and we'll get back to you within one business day.</p>
 
-    <!-- TODO(forms): This form posts to mailto:, which only opens the visitor's own email app
-         (and does nothing on many phones/webmail-only users). Fields collected: First Name*, Last Name*,
-         Company*, Work Email*, Phone, Inquiry Type (select), Role, Message.
-         Replace action with a hosted endpoint, e.g. Formspree: action="https://formspree.io/f/XXXXXXX" method="POST"
-         (and drop enctype="text/plain"). Free tier = 50 submissions/month. See README.md. -->
-    <form action="mailto:brian@saguarotalentadvisors.com" method="POST" enctype="text/plain">
+    <form id="contactForm" class="contact-form" action="https://formspree.io/f/xrppqwne" method="POST">
+      <input type="hidden" name="_subject" value="New inquiry from saguarotalentadvisors.com">
+      <div class="form-hp" aria-hidden="true">
+        <label for="gotcha">Leave this field empty</label>
+        <input type="text" id="gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
+      </div>
       <div class="form-row">
         <div>
           <label for="fname">First Name</label>
-          <input type="text" id="fname" name="First Name" placeholder="Jane" required>
+          <input type="text" id="fname" name="first_name" placeholder="Jane" autocomplete="given-name" required>
         </div>
         <div>
           <label for="lname">Last Name</label>
-          <input type="text" id="lname" name="Last Name" placeholder="Smith" required>
+          <input type="text" id="lname" name="last_name" placeholder="Smith" autocomplete="family-name" required>
         </div>
       </div>
       <div class="form-group">
         <label for="company">Company</label>
-        <input type="text" id="company" name="Company" placeholder="Acme Corp" required>
+        <input type="text" id="company" name="company" placeholder="Acme Corp" autocomplete="organization" required>
       </div>
       <div class="form-group">
         <label for="email">Work Email</label>
-        <input type="email" id="email" name="Email" placeholder="jane@acmecorp.com" required>
+        <input type="email" id="email" name="email" placeholder="jane@acmecorp.com" autocomplete="email" required>
       </div>
       <div class="form-group">
         <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="Phone" placeholder="(602) 555-0100">
+        <input type="tel" id="phone" name="phone" placeholder="(602) 555-0100" autocomplete="tel">
       </div>
       <div class="form-group">
         <label for="inquiry">What Can We Help With?</label>
-        <select id="inquiry" name="Inquiry Type">
+        <select id="inquiry" name="inquiry_type">
           <option value="">— Select one —</option>
           <option value="direct-hire">Direct Hire / Contingency Search</option>
           <option value="advisory">Talent Advisory Services</option>
@@ -217,13 +226,14 @@
       </div>
       <div class="form-group">
         <label for="role">Role You're Hiring For (if applicable)</label>
-        <input type="text" id="role" name="Role" placeholder="e.g. Senior Accountant, Operations Manager">
+        <input type="text" id="role" name="role" placeholder="e.g. Senior Accountant, Operations Manager">
       </div>
       <div class="form-group">
         <label for="message">Tell Us More</label>
-        <textarea id="message" name="Message" placeholder="Brief description of the role, company size, location, or anything else that would help us understand the need..."></textarea>
+        <textarea id="message" name="message" placeholder="Brief description of the role, company size, location, or anything else that would help us understand the need..."></textarea>
       </div>
       <button type="submit" class="btn-submit">Send Message →</button>
+      <div class="form-status" id="formStatus" role="status" aria-live="polite" tabindex="-1" hidden></div>
       <p class="form-note">By submitting this form you agree to be contacted by Saguaro Talent Advisors regarding your inquiry. We do not share your information with third parties.</p>
     </form>
   </div>
@@ -301,6 +311,60 @@
       });
     });
   }
+
+  // Contact form: submit to Formspree via fetch so the visitor stays on the page.
+  // Without JS the form still POSTs to Formspree normally.
+  (function () {
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    if (!form || !status || !window.fetch || !window.FormData) return;
+    const btn = form.querySelector('.btn-submit');
+    const btnLabel = btn.textContent;
+    const FALLBACK = 'brian@saguarotalentadvisors.com';
+
+    function show(kind, title, body) {
+      status.className = 'form-status' + (kind === 'error' ? ' is-error' : ' is-success');
+      status.setAttribute('role', kind === 'error' ? 'alert' : 'status');
+      status.innerHTML = '';
+      const t = document.createElement('strong'); t.textContent = title; status.appendChild(t);
+      const p = document.createElement('span'); p.innerHTML = body; status.appendChild(p);
+      status.hidden = false;
+      status.focus({ preventScroll: true });
+      const r = status.getBoundingClientRect();
+      if (r.top < 64 || r.bottom > window.innerHeight) status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      status.hidden = true;
+      btn.disabled = true;
+      btn.textContent = 'Sending\u2026';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.reset();
+          show('success', 'Thanks, your message is on its way.', 'Brian will be in touch within one business day.');
+        } else {
+          let detail = '';
+          try {
+            const data = await res.json();
+            if (data && Array.isArray(data.errors)) detail = data.errors.map(function (x) { return x.message; }).filter(Boolean).join(' ');
+          } catch (_) {}
+          throw new Error(detail || ('HTTP ' + res.status));
+        }
+      } catch (err) {
+        show('error', 'Sorry, your message didn\u2019t send.',
+          'Please try again, or email us directly at <a href="mailto:' + FALLBACK + '">' + FALLBACK + '</a>.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = btnLabel;
+      }
+    });
+  })();
 </script>
 
 </body>
