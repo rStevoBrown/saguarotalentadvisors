@@ -155,6 +155,7 @@
     .calc-box { grid-template-columns: 1fr !important; gap: 16px; text-align: center; }
     .process { display: block; }
     .process-step { grid-template-columns: 48px 1fr; gap: 16px; }
+    .process-grid { grid-template-columns: 1fr !important; }
 
     .hero-card { margin-top: 0; }
     .stat-row { flex-direction: column; gap: 4px; }
@@ -236,6 +237,9 @@
     nav .nav-cta { display: none; }
   }
 
+  /* wide tables scroll inside this box on small screens instead of widening the page */
+  .table-scroll { max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:32px; }
+  .table-scroll > table { margin-top:0; }
 </style>
 </head>
 <body>
@@ -280,7 +284,7 @@
   <div class="section-eyebrow">How It Works</div>
   <div class="section-title">Our 7-Step Search Process</div>
   <div class="divider"></div>
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 60px;">
+  <div class="process-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:0 60px;">
     <div class="process">
       <div class="process-step"><div class="process-num">1</div><div class="process-content"><h3>Intake & Role Brief</h3><p>We conduct a deep-dive call to understand the role requirements, team dynamics, compensation range, and what success looks like at 90 days.</p></div></div>
       <div class="process-step"><div class="process-num">2</div><div class="process-content"><h3>Targeted Sourcing</h3><p>We actively source passive and active candidates via LinkedIn Recruiter, Boolean search, referrals, and our professional network — targeting fit, not just availability.</p></div></div>
@@ -302,7 +306,7 @@
     <div class="section-title">Our Fee Structure</div>
     <div class="divider"></div>
     <p class="body-text">Our fee is agreed in writing before any search begins. No renegotiation after the hire, no hidden charges. Our rates run 30–50% below the national agency average.</p>
-    <table class="fee-table">
+    <div class="table-scroll"><table class="fee-table">
       <thead><tr><th>Role Category</th><th>Saguaro Rate</th><th>Typical Market Rate</th><th>Calculation Basis</th><th>Notes</th></tr></thead>
       <tbody>
         <tr><td>Exempt Professional (Standard)</td><td>10%</td><td>15–20%</td><td>First-year base salary</td><td><span class="badge badge-green">Most Common</span></td></tr>
@@ -310,7 +314,7 @@
         <tr><td>Senior / Hard-to-Fill</td><td>15%</td><td>25–30%</td><td>First-year base salary</td><td>Director-level and above</td></tr>
         <tr><td>Exclusive Search Engagement</td><td>10%</td><td>15–20%</td><td>First-year base salary</td><td><span class="badge">Best Rate</span> Client pauses other recruiting</td></tr>
       </tbody>
-    </table>
+    </table></div>
 
     <div class="calc-box">
       <div class="calc-item"><div class="calc-label">Example Salary</div><div class="calc-value">$85,000</div></div>
@@ -350,7 +354,7 @@
     <div class="section-eyebrow">What We Place</div>
     <div class="section-title">Roles & Industries</div>
     <div class="divider"></div>
-    <table class="roles-table">
+    <div class="table-scroll"><table class="roles-table">
       <thead><tr><th>Function / Department</th><th>Example Roles We Place</th><th>Typical Fee Level</th></tr></thead>
       <tbody>
         <tr><td>Finance & Accounting</td><td>Controller, Senior Accountant, FP&A Analyst, CFO</td><td>10–12%</td></tr>
@@ -361,7 +365,7 @@
         <tr><td>Legal & Compliance</td><td>Paralegal, Compliance Analyst, Contract Manager</td><td>12–15%</td></tr>
         <tr><td>Engineering</td><td>Project Engineer, Quality Manager, Manufacturing Engineer</td><td>12–15%</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 </div>
 

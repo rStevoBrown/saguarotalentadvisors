@@ -232,6 +232,9 @@
     nav .nav-cta { display: none; }
   }
 
+  /* wide tables scroll inside this box on small screens instead of widening the page */
+  .table-scroll { max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:32px; }
+  .table-scroll > table { margin-top:0; }
 </style>
 </head>
 <body>
@@ -336,7 +339,7 @@
     <div class="section-title">What Hiring Managers Learn</div>
     <div class="divider"></div>
     <p class="body-text" style="margin-bottom:8px;">Our interview training is practical, role-relevant, and immediately applicable. Here's what we cover and why it matters.</p>
-    <table class="training-table">
+    <div class="table-scroll"><table class="training-table">
       <thead><tr><th>Topic</th><th>What We Cover</th><th>Why It Matters</th><th>Outcome</th></tr></thead>
       <tbody>
         <tr><td>STAR Method</td><td>Structuring behavioral questions to elicit specific past examples</td><td>Past behavior is the best predictor of future performance</td><td>More consistent, defensible hiring decisions</td></tr>
@@ -346,7 +349,7 @@
         <tr><td>Candidate Experience</td><td>How the interview process reflects your employer brand</td><td>Top candidates are evaluating you too</td><td>Higher acceptance rates and better referrals</td></tr>
         <tr><td>Offer & Close</td><td>Compensation negotiation, offer structure, and candidate closing</td><td>Offers fail when compensation expectations aren't managed</td><td>Better acceptance rates and fewer last-minute surprises</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 </div>
 
@@ -357,7 +360,7 @@
     <div class="section-title">Investment by Engagement Type</div>
     <div class="divider"></div>
     <p class="body-text">Advisory services are priced per engagement. All pricing is confirmed in writing before work begins. Discounts available for bundled services or combined recruiting + advisory engagements.</p>
-    <table class="pricing-table">
+    <div class="table-scroll"><table class="pricing-table">
       <thead><tr><th>Service</th><th>Typical Range</th><th>Format</th><th>Timeline</th></tr></thead>
       <tbody>
         <tr><td>Interview Training Workshop</td><td>$1,500 – $3,000</td><td>2–4 hour session, on-site or virtual. Up to 8 participants.</td><td>1–2 weeks to schedule</td></tr>
@@ -366,7 +369,7 @@
         <tr><td>Ongoing Advisory Retainer</td><td>$750 – $1,500/mo</td><td>Monthly calls + availability for questions and reviews</td><td>Month-to-month</td></tr>
         <tr><td>Combined Package (Interview + Comp)</td><td>$3,000 – $6,500</td><td>Bundled engagement at a reduced combined rate</td><td>3–5 weeks</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 </div>
 
