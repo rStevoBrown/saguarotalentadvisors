@@ -62,6 +62,8 @@
   .founder-section { padding:52px 48px; }
   .founder-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 2fr; gap:60px; align-items:start; }
   .founder-img { background:var(--sage); aspect-ratio:1; border-top:4px solid var(--orange); display:flex; align-items:center; justify-content:center; font-size:64px; }
+  /* 200px source photo shown at 180px (never upscaled), circular with a white + orange ring */
+  .founder-photo { display:block; width:180px; height:180px; border-radius:50%; object-fit:cover; border:4px solid var(--white); box-shadow:0 0 0 3px var(--orange), 0 8px 24px rgba(0,0,0,0.12); }
   .founder-name { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--dark-green); margin-bottom:6px; }
   .founder-title { color:var(--orange); font-size:14px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:24px; }
 
@@ -112,6 +114,8 @@
     .fee-wrap { grid-template-columns: 1fr !important; gap: 36px; }
     .guarantee-inner { grid-template-columns: 1fr !important; gap: 36px; }
     .founder-inner { grid-template-columns: 1fr !important; gap: 36px; }
+    .founder-img { aspect-ratio:auto; padding:32px 0; }
+    .founder-photo { width:160px; height:160px; }
     .fee-inner, .sage-inner, .roles-inner, .pricing-inner,
     .faq-inner, .need-us-inner, .compare-wrap { padding: 0; }
 
@@ -267,7 +271,7 @@
 <div class="founder-section">
   <div class="founder-inner">
     <div>
-      <div class="founder-img">🌵</div>
+      <div class="founder-img"><img class="founder-photo" src="../assets/img/brian-headshot.jpg" alt="Brian, founder of Saguaro Talent Advisors" width="200" height="200" loading="lazy" decoding="async"></div>
     </div>
     <div>
       <div class="section-eyebrow">Who's Behind This</div>
