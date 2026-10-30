@@ -8,6 +8,7 @@ index.html            /
 about/index.html      /about
 advisory/index.html   /advisory
 hiring/index.html     /hiring
+subscription/index.html /subscription
 contact/index.html    /contact
 assets/img/logo.png   logo (was base64-inlined twice on every page)
 assets/fonts/         Playfair Display + Source Sans 3 (Google Fonts, SIL OFL 1.1), self-hosted
