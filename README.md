@@ -22,13 +22,11 @@ All internal links are relative, so the site works both at a custom domain root 
     python3 -m http.server 8000   # then open http://localhost:8000/
 
 ## Known TODOs
-- **Contact form** (`contact/index.html`) uses `action="mailto:..."`. It only opens the visitor's
-  mail app; nothing is stored or sent server-side. Fields: First Name*, Last Name*, Company*,
-  Work Email*, Phone, Inquiry Type, Role, Message. Options:
-  - Formspree (free 50/mo): create a form, set `action="https://formspree.io/f/<id>" method="POST"`,
-    remove `enctype="text/plain"`.
-  - Google Form (free, unlimited): link/embed instead of the native form (changes the look).
-  - Keep mailto (status quo) and just also show the email address plainly.
+- **Contact form** (`contact/index.html`) submits to Formspree (`https://formspree.io/f/xrppqwne`,
+  free tier ~50 submissions/month) via `fetch`, with inline success/error messages and a hidden
+  `_gotcha` honeypot field for spam. The first real submission triggers a Formspree email asking
+  the form owner to confirm the form; submissions are only delivered after that confirmation.
+  Fields: First Name*, Last Name*, Company*, Work Email*, Phone, Inquiry Type, Role, Message.
 - **Netlify Forms do not work on GitHub Pages** (not used today anyway).
 
 ## Custom domain (not done yet)
